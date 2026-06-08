@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro de Implantação — Juizados Especiais Cíveis no EPROC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;--color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;--color-border:#d4d1ca;
+  --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+  --color-primary:#01696f;--color-primary-hover:#0c4e54;
+  --color-primary-highlight:#cedcd8;
+  --color-warning:#964219;--color-warning-highlight:#ddcfc6;
+  --color-error:#a12c7b;--color-error-highlight:#e0ced7;
+  --color-success:#437a22;--color-success-highlight:#d4dfcc;
+  --color-blue:#006494;--color-blue-highlight:#c6d8e4;
+  --color-orange:#da7101;--color-orange-highlight:#e7d7c4;
+  --color-gold:#d19900;--color-gold-highlight:#e9e0c6;
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;--radius-xl:1rem;--radius-full:9999px;
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80/0.06);--shadow-md:0 4px 12px oklch(0.2 0.01 80/0.08);--shadow-lg:0 12px 32px oklch(0.2 0.01 80/0.12);
+  --font-display:"Instrument Serif",Georgia,serif;--font-body:"Inter","Helvetica Neue",sans-serif;
+  --text-xs:clamp(0.75rem,0.7rem + 0.25vw,0.875rem);--text-sm:clamp(0.875rem,0.8rem + 0.35vw,1rem);
+  --text-base:clamp(1rem,0.95rem + 0.25vw,1.125rem);--text-lg:clamp(1.125rem,1rem + 0.75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+  --trans:180ms cubic-bezier(0.16,1,0.3,1);
+  --max-w:960px;
+}
+[data-theme="dark"]{
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-highlight:#313b3b;
+  --color-warning:#bb653b;--color-warning-highlight:#564942;
+  --color-error:#d163a7;--color-error-highlight:#4c3d46;
+  --color-success:#6daa45;--color-success-highlight:#3a4435;
+  --color-blue:#5591c7;--color-blue-highlight:#3a4550;
+  --color-orange:#fdab43;--color-orange-highlight:#564b3e;
+  --color-gold:#e8af34;--color-gold-highlight:#4d4332;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.2);--shadow-md:0 4px 12px oklch(0 0 0/.3);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:4rem;}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background-color:var(--color-bg);}
+img,svg{display:block;max-width:100%;}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2;}
+p,li{text-wrap:pretty;}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit;}
+a,button{transition:color var(--trans),background var(--trans),border-color var(--trans),box-shadow var(--trans);}
+.c{max-width:var(--max-w);margin-inline:auto;padding-inline:var(--space-6);}
+
+/* Header */
+header{background:var(--color-surface);border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+.hi{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) var(--space-6);max-width:var(--max-w);margin-inline:auto;}
+.logo{display:flex;align-items:center;gap:var(--space-3);}
+.logo-ic{width:36px;height:36px;color:var(--color-primary);flex-shrink:0;}
+.logo-tx{font-family:var(--font-display);font-size:var(--text-lg);font-weight:400;line-height:1.1;}
+.logo-sb{font-size:var(--text-xs);color:var(--color-text-muted);letter-spacing:.04em;text-transform:uppercase;}
+.tt{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);border:1px solid var(--color-border);}
+.tt:hover{background:var(--color-surface-offset);color:var(--color-text);}
+
+/* Hero */
+.hero{padding:clamp(3rem,6vw,4rem) var(--space-6) clamp(2rem,4vw,3rem);background:linear-gradient(180deg,var(--color-surface) 0%,var(--color-bg) 100%);border-bottom:1px solid var(--color-border);}
+.badge{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-primary-highlight);color:var(--color-primary);border-radius:var(--radius-full);padding:var(--space-1) var(--space-3);font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--space-4);}
+.badge svg{width:13px;height:13px;}
+h1.ht{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-text);margin-bottom:var(--space-4);max-width:20ch;}
+.hsub{font-size:var(--text-base);color:var(--color-text-muted);max-width:58ch;margin-bottom:var(--space-6);}
+.hmeta{display:flex;flex-wrap:wrap;gap:var(--space-4);}
+.mi{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);}
+.mi svg{width:13px;height:13px;color:var(--color-primary);}
+
+/* Nav tabs */
+.nt{background:var(--color-surface);border-bottom:1px solid var(--color-border);position:sticky;top:65px;z-index:90;}
+.ti{max-width:var(--max-w);margin-inline:auto;padding-inline:var(--space-6);display:flex;overflow-x:auto;}
+.tb{padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--color-text-muted);font-weight:500;border-bottom:2px solid transparent;white-space:nowrap;transition:all var(--trans);}
+.tb:hover{color:var(--color-text);}
+.tb.act{color:var(--color-primary);border-bottom-color:var(--color-primary);font-weight:600;}
+
+/* Section */
+.sec{padding:clamp(2rem,4vw,3rem) var(--space-6);}
+.sn{font-size:var(--text-xs);color:var(--color-primary);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--space-2);}
+h2.st{font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-3);}
+.sd{font-size:var(--text-base);color:var(--color-text-muted);max-width:60ch;margin-bottom:var(--space-8);}
+
+/* Cards */
+.sg{display:flex;flex-direction:column;gap:var(--space-6);}
+.sc{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h/0.08);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow var(--trans);}
+.sc:hover{box-shadow:var(--shadow-md);}
+.sh{display:flex;align-items:flex-start;gap:var(--space-4);padding:var(--space-6);cursor:pointer;user-select:none;}
+.snum{flex-shrink:0;width:40px;height:40px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:700;}
+.snum.bl{background:var(--color-blue-highlight);color:var(--color-blue);}
+.snum.tl{background:var(--color-primary-highlight);color:var(--color-primary);}
+.snum.gr{background:var(--color-success-highlight);color:var(--color-success);}
+.snum.am{background:var(--color-warning-highlight);color:var(--color-warning);}
+.snum.or{background:var(--color-orange-highlight);color:var(--color-orange);}
+.snum.go{background:var(--color-gold-highlight);color:var(--color-gold);}
+.snum.re{background:var(--color-error-highlight);color:var(--color-error);}
+.sinf{flex:1;}
+.stit{font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-1);}
+.ssub{font-size:var(--text-sm);color:var(--color-text-muted);}
+.chv{flex-shrink:0;width:20px;height:20px;color:var(--color-text-faint);transition:transform var(--trans);margin-top:var(--space-2);}
+.sc.op .chv{transform:rotate(180deg);}
+.sb{border-top:1px solid var(--color-border);padding:var(--space-6);display:none;}
+.sc.op .sb{display:block;}
+
+/* Chips */
+.tlb{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-bottom:var(--space-3);}
+.tch{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);}
+.ch{display:inline-flex;align-items:center;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:500;font-family:monospace;border:1px solid oklch(from var(--color-text) l c h/0.08);}
+.ch.bl{background:var(--color-blue-highlight);color:var(--color-blue);}
+.ch.tl{background:var(--color-primary-highlight);color:var(--color-primary);}
+.ch.gr{background:var(--color-success-highlight);color:var(--color-success);}
+.ch.am{background:var(--color-warning-highlight);color:var(--color-warning);}
+.ch.or{background:var(--color-orange-highlight);color:var(--color-orange);}
+.ch.go{background:var(--color-gold-highlight);color:var(--color-gold);}
+.ch.re{background:var(--color-error-highlight);color:var(--color-error);}
+
+/* Alerts */
+.al{display:flex;gap:var(--space-3);padding:var(--space-4) var(--space-5);border-radius:var(--radius-lg);font-size:var(--text-sm);margin-top:var(--space-4);}
+.al svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+.al.wa{background:var(--color-warning-highlight);color:var(--color-warning);border:1px solid color-mix(in oklch,var(--color-warning) 20%,transparent);}
+.al.in{background:var(--color-primary-highlight);color:var(--color-primary);border:1px solid color-mix(in oklch,var(--color-primary) 20%,transparent);}
+.al.er{background:var(--color-error-highlight);color:var(--color-error);border:1px solid color-mix(in oklch,var(--color-error) 20%,transparent);}
+
+/* SQL */
+.sql{background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);font-family:monospace;font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.8;overflow-x:auto;margin-top:var(--space-4);}
+.kw{color:var(--color-primary);font-weight:600;}
+.tb2{color:var(--color-warning);}
+.st2{color:var(--color-success);}
+.cm{color:var(--color-text-faint);}
+
+/* Field rows */
+.fr{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);margin-bottom:var(--space-2);}
+.fn{font-family:monospace;font-size:var(--text-xs);color:var(--color-text-muted);flex:1;}
+.fv{font-family:monospace;font-size:var(--text-xs);font-weight:700;padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);background:var(--color-primary-highlight);color:var(--color-primary);}
+.fv.re{background:var(--color-error-highlight);color:var(--color-error);}
+.fv.go{background:var(--color-gold-highlight);color:var(--color-gold);font-size:.65rem;}
+
+/* Test items */
+.tl2{display:flex;flex-direction:column;gap:var(--space-4);}
+.ti2{display:flex;gap:var(--space-4);align-items:flex-start;padding:var(--space-5);background:var(--color-surface-2);border:1px solid oklch(from var(--color-text) l c h/0.06);border-radius:var(--radius-lg);}
+.tc{flex-shrink:0;width:32px;height:32px;border-radius:var(--radius-full);border:2px solid var(--color-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--trans);}
+.tc:hover{border-color:var(--color-primary);background:var(--color-primary-highlight);}
+.tc.dn{background:var(--color-primary);border-color:var(--color-primary);}
+.tc.dn svg{color:#fff;opacity:1!important;}
+.tc svg{width:14px;height:14px;color:var(--color-text-faint);opacity:0;}
+.tit2{font-weight:600;font-size:var(--text-sm);margin-bottom:var(--space-1);}
+.tds{font-size:var(--text-sm);color:var(--color-text-muted);}
+
+/* Progress */
+.pb{background:var(--color-surface-offset);border-radius:var(--radius-full);height:6px;margin-top:var(--space-2);}
+.pbi{height:6px;border-radius:var(--radius-full);background:var(--color-primary);transition:width .4s ease;width:0%;}
+
+/* Tab content */
+.tco{display:none;}
+.tco.act{display:block;}
+
+p.bd{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);}
+
+@media(max-width:640px){
+  .hi{padding:var(--space-3) var(--space-4);}
+  .hero{padding:var(--space-8) var(--space-4);}
+  .sec{padding:var(--space-6) var(--space-4);}
+  .sh{padding:var(--space-4);}
+  .sb{padding:var(--space-4);}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="logo">
+      <svg class="logo-ic" viewBox="0 0 36 36" fill="none" aria-label="EPROC">
+        <rect x="3" y="3" width="30" height="30" rx="7" fill="currentColor" opacity="0.12"/>
+        <rect x="8" y="8" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 14h12M12 18h8M12 22h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="26" cy="10" r="4" fill="currentColor"/>
+        <path d="M24.5 10l1 1 2-2" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="logo-tx">EPROC</div>
+        <div class="logo-sb">Roteiro de Implantação</div>
+      </div>
+    </div>
+    <button class="tt" data-theme-toggle aria-label="Alternar tema">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="c">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Juizados Especiais Cíveis
+    </div>
+    <h1 class="ht">Roteiro de Implantação no EPROC</h1>
+    <p class="hsub">Guia passo a passo para configuração de Juizados Especiais Cíveis e Turmas Recursais, contemplando execução de scripts SQL, configurações de parâmetros e testes de fluxo.</p>
+    <div class="hmeta">
+      <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Etapas sequenciais</span>
+      <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>11 grupos de scripts</span>
+      <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>5 testes de fluxo</span>
+    </div>
+  </div>
+</section>
+
+<nav class="nt" role="navigation" aria-label="Fases">
+  <div class="ti">
+    <button class="tb act" data-tab="fase1">Fase 1 — Scripts</button>
+    <button class="tb" data-tab="checklist">Checklist</button>
+    <button class="tb" data-tab="fase2">Fase 2 — Testes</button>
+    <button class="tb" data-tab="configs">Configurações Especiais</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- FASE 1 -->
+<div id="fase1" class="tco act">
+<div class="c">
+<section class="sec">
+  <div class="sn">Fase 01</div>
+  <h2 class="st">Execução dos Scripts</h2>
+  <p class="sd">Execute os scripts na ordem indicada. Cada etapa lista os arquivos e tabelas envolvidos, sem expor as queries. Clique em cada grupo para expandir os detalhes.</p>
+
+  <div class="sg">
+
+    <!-- 1. Conferência inicial -->
+    <div class="sc op" id="c1">
+      <div class="sh" onclick="tog('c1')">
+        <div class="snum bl">1</div>
+        <div class="sinf">
+          <div class="stit">Conferência inicial</div>
+          <div class="ssub">Validação de códigos, perfis e referências antes da execução</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos de referência</div>
+        <div class="tch">
+          <span class="ch bl">implementacao-jec*/1.orgao.sql</span>
+          <span class="ch bl">implementacao-tr/1.orgaos.sql</span>
+          <span class="ch bl">implementacao-tr/2.competencias.sql</span>
+        </div>
+        <p class="bd">Antes de executar, confirme se os códigos de órgão, competência, grupo de competência, perfil de minuta, usuário administrador e localidades não conflitam com registros existentes no ambiente de destino.</p>
+        <div class="al in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>Nos scripts da Turma Recursal há dependência entre órgão julgador, gabinetes e competência. Se o ambiente exigir integridade referencial nessa relação, crie a competência antes de concluir o vínculo dos gabinetes.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Órgãos -->
+    <div class="sc" id="c2">
+      <div class="sh" onclick="tog('c2')">
+        <div class="snum tl">2</div>
+        <div class="sinf">
+          <div class="stit">Órgãos</div>
+          <div class="ssub">Cadastro dos Juizados, Turma Recursal e gabinetes</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch tl">implementacao-jec*/1.orgao.sql</span>
+          <span class="ch tl">implementacao-jec-com-classes/1.orgao.sql</span>
+          <span class="ch tl">implementacao-tr/1.orgaos.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch tl">orgao</span>
+          <span class="ch tl">orgao_endereco</span>
+          <span class="ch tl">mapa_distribuicao</span>
+          <span class="ch tl">localizador_orgao</span>
+          <span class="ch tl">evento_orgao_judicial</span>
+          <span class="ch tl">bap_orgao</span>
+          <span class="ch tl">orgao_gabinete</span>
+        </div>
+        <p class="bd">Cria os órgãos principais e juízos vinculados dos Juizados Especiais, além da Turma Recursal Unificada e seus gabinetes. Também prepara endereço, mapa de distribuição, localizadores de sistema, eventos judiciais, BAP e colegiado.</p>
+        <div class="al in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>Garanta que o código do órgão seja único antes de executar. Verifique na tabela <code>orgao</code> antes de prosseguir.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Competências -->
+    <div class="sc" id="c3">
+      <div class="sh" onclick="tog('c3')">
+        <div class="snum gr">3</div>
+        <div class="sinf">
+          <div class="stit">Competências</div>
+          <div class="ssub">Criação do grupo de competência e das competências judiciais</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch gr">implementacao-jec*/2.competencias.sql</span>
+          <span class="ch gr">implementacao-jec-com-classes/2.competencias.sql</span>
+          <span class="ch gr">implementacao-tr/2.competencias.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch gr">grupo_competencia</span>
+          <span class="ch gr">competencia_judicial</span>
+        </div>
+        <p class="bd">Cadastra os grupos de competência e as competências que serão usadas nas etapas seguintes. No caso da Turma Recursal, esta etapa cria a competência unificada que será vinculada aos gabinetes e às classes.</p>
+      </div>
+    </div>
+
+    <!-- 4. Revisão de classes -->
+    <div class="sc" id="c4">
+      <div class="sh" onclick="tog('c4')">
+        <div class="snum am">4</div>
+        <div class="sinf">
+          <div class="stit">Revisão de Classes</div>
+          <div class="ssub">Ativação e saneamento de classes já existentes</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch am">implementacao-tr/revisao-classes.sql</span>
+          <span class="ch am">extra-tr/classes-anteriores.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch am">classe_judicial</span>
+          <span class="ch am">competencia_classe_judicial</span>
+          <span class="ch am">competencia_classe_situacao_parte</span>
+          <span class="ch am">relacao_classe_judicial_mni</span>
+          <span class="ch am">mni_classe_judicial</span>
+          <span class="ch am">tipo_documento_classe_peticao_inicial</span>
+        </div>
+        <p class="bd">Antes de vincular classes à nova competência, revise as classes já cadastradas no EPROC: ativação, limpeza de vínculos antigos, situação das partes e mapeamentos MNI/CNJ. Esta etapa evita que vínculos herdados contaminem a nova implantação.</p>
+        <div class="al wa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Execute esta revisão antes dos scripts de vínculo de classes, especialmente quando houver classes de Turma Recursal reaproveitadas de implantação anterior.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Classes -->
+    <div class="sc" id="c5">
+      <div class="sh" onclick="tog('c5')">
+        <div class="snum or">5</div>
+        <div class="sinf">
+          <div class="stit">Classes</div>
+          <div class="ssub">Vínculo das classes processuais às competências</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch or">implementacao-jec-com-classes/3.classes.sql</span>
+          <span class="ch or">implementacao-jec-com-classes/4.completo-classes.sql</span>
+          <span class="ch or">implementacao-tr/3.classes-unificadas.sql</span>
+          <span class="ch or">extra-tr/3.competencia-clsase325.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch or">competencia_classe_judicial</span>
+          <span class="ch or">competencia_classe_situacao_parte</span>
+          <span class="ch or">peso_classe_competencia_judicial</span>
+          <span class="ch or">classe_competencia_localidade</span>
+        </div>
+        <p class="bd">Vincula as classes processuais às competências, configura as situações das partes e prepara os pesos por juízo e localidades. No caso da classe extra de conflito de jurisdição, execute após a existência dos juízos da Turma Recursal.</p>
+        <div class="al wa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>As classes em <code>peso_classe_competencia_judicial</code> e <code>classe_competencia_localidade</code> devem refletir exatamente as classes ativas para a competência implantada.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Competências por juízo -->
+    <div class="sc" id="c6">
+      <div class="sh" onclick="tog('c6')">
+        <div class="snum go">6</div>
+        <div class="sinf">
+          <div class="stit">Competências por Juízo</div>
+          <div class="ssub">Associação dos juízos às competências e classes</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch go">implementacao-jec*/2.competencias.sql</span>
+          <span class="ch go">implementacao-tr/4.competencias-juizos.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch go">competencia_juizo</span>
+          <span class="ch go">peso_classe_competencia_judicial</span>
+          <span class="ch go">classe_competencia_localidade</span>
+        </div>
+        <p class="bd">Associa cada juízo à competência definida, aplica os pesos das classes e habilita as localidades para distribuição. Para a Turma Recursal, esta etapa deve ocorrer depois da criação das classes da competência unificada.</p>
+      </div>
+    </div>
+
+    <!-- 7. Assuntos -->
+    <div class="sc" id="c7">
+      <div class="sh" onclick="tog('c7')">
+        <div class="snum re">7</div>
+        <div class="sinf">
+          <div class="stit">Assuntos da Competência</div>
+          <div class="ssub">Cópia dos assuntos habilitados para a competência da Turma Recursal</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivo</div>
+        <div class="tch">
+          <span class="ch re">implementacao-tr/5.competencias-assuntos.sql</span>
+        </div>
+        <div class="tlb">Tabela envolvida</div>
+        <div class="tch">
+          <span class="ch re">competencia_assunto_judicial</span>
+        </div>
+        <p class="bd">Replica os assuntos das competências de origem dos Juizados para a competência da Turma Recursal. Execute após a criação da competência de destino e antes dos testes de protocolização/distribuição.</p>
+      </div>
+    </div>
+
+    <!-- 8. Localizadores -->
+    <div class="sc" id="c8">
+      <div class="sh" onclick="tog('c8')">
+        <div class="snum bl">8</div>
+        <div class="sinf">
+          <div class="stit">Localizadores</div>
+          <div class="ssub">Localizadores de entrada e de fluxo nos órgãos implantados</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch bl">implementacao-jec1/localizadores_juizados.sql</span>
+          <span class="ch bl">implementacao-tr/6.localizadores.sql</span>
+          <span class="ch bl">implementacao-jec*/1.orgao.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch bl">localizador_orgao</span>
+        </div>
+        <p class="bd">Vincula localizadores de sistema copiados de órgãos de referência e inclui localizadores específicos exigidos pelo fluxo dos Juizados e da Turma Recursal.</p>
+        <div class="al in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>Após a criação via script, localizadores específicos da competência (ex.: <strong>Petição Inicial JEE para Juizados Especiais</strong>) devem ser verificados e inseridos conforme descrito nos Testes de Fluxo.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Pessoas JUI -->
+    <div class="sc" id="c9">
+      <div class="sh" onclick="tog('c9')">
+        <div class="snum tl">9</div>
+        <div class="sinf">
+          <div class="stit">Pessoas JUI</div>
+          <div class="ssub">Criação das pessoas sistêmicas dos órgãos judiciais</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivos</div>
+        <div class="tch">
+          <span class="ch tl">implementacao-jec*/pessoa_jui.sql</span>
+          <span class="ch tl">implementacao-tr/7.pessoa_jui.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch tl">pessoa</span>
+          <span class="ch tl">pessoa_identificacao</span>
+          <span class="ch tl">pessoa_nome</span>
+        </div>
+        <p class="bd">Cria as pessoas do tipo JUI para os juízos e gabinetes já cadastrados, preenchendo identificações por sigla, ID e código do órgão. Execute somente depois da criação dos órgãos correspondentes.</p>
+      </div>
+    </div>
+
+    <!-- 10. Perfil de minuta -->
+    <div class="sc" id="c10">
+      <div class="sh" onclick="tog('c10')">
+        <div class="snum gr">10</div>
+        <div class="sinf">
+          <div class="stit">Perfil de Minuta</div>
+          <div class="ssub">Vínculo do perfil de órgão ao tipo de documento de minuta</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivo</div>
+        <div class="tch">
+          <span class="ch gr">implementacao-tr/perfil_minuta_documento.sql</span>
+        </div>
+        <div class="tlb">Tabela envolvida</div>
+        <div class="tch">
+          <span class="ch gr">perfil_orgao_minuta_tipo_documento_minuta</span>
+        </div>
+        <p class="bd">Relaciona o perfil de minuta da secretaria da Turma Recursal ao tipo de documento necessário para emissão de acórdão. Esta etapa depende da existência do perfil de minuta referenciado no cadastro do órgão.</p>
+      </div>
+    </div>
+
+    <!-- 11. Agrupamentos -->
+    <div class="sc" id="c11">
+      <div class="sh" onclick="tog('c11')">
+        <div class="snum am">11</div>
+        <div class="sinf">
+          <div class="stit">Agrupamentos de Sessão</div>
+          <div class="ssub">Configuração dos agrupamentos da pauta e da mesa de julgamento</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <div class="tlb">Arquivo</div>
+        <div class="tch">
+          <span class="ch am">implementacao-tr/agrupamento.sql</span>
+        </div>
+        <div class="tlb">Tabelas envolvidas</div>
+        <div class="tch">
+          <span class="ch am">tipo_agrupamento_sessao_julgamento</span>
+          <span class="ch am">tipo_agrupamento_sessao_julgamento_orgao</span>
+        </div>
+        <p class="bd">Habilita os agrupamentos usados nas sessões de julgamento da Turma Recursal, incluindo pauta, mesa, destaques, apontamentos, íntegra, precedentes e pesquisa. Execute após o órgão julgador da Turma Recursal estar criado.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+</div>
+
+<!-- CHECKLIST -->
+<div id="checklist" class="tco">
+<div class="c">
+<section class="sec">
+  <div class="sn">Checklist</div>
+  <h2 class="st">Checklist de Implantação</h2>
+  <p class="sd">Use esta lista como controle operacional durante a implantação. Ela segue a ordem esperada dos scripts e inclui validações antes, durante e depois da execução.</p>
+  <div style="margin-bottom:var(--space-6);">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-2);">
+      <span>Progresso da implantação</span>
+      <span id="clb">0 / 15 concluídos</span>
+    </div>
+    <div class="pb"><div class="pbi" id="cbi"></div></div>
+  </div>
+
+  <div class="tl2">
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">1. Confirmar janela, backup e ambiente de destino</div>
+        <div class="tds">Valide a janela de execução, o backup recente, a base correta e o usuário responsável pela implantação.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">2. Conferir códigos e referências dos scripts</div>
+        <div class="tds">Verifique códigos de órgão, competência, grupo de competência, localidade, perfil de minuta e usuário administrador.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">3. Executar cadastro dos órgãos</div>
+        <div class="tds">Implante Juizados, Turma Recursal, gabinetes, endereços, eventos, localizadores de sistema, distribuição inicial e colegiado.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">4. Executar criação das competências</div>
+        <div class="tds">Cadastre grupos e competências antes dos vínculos de classes, juízos, assuntos e distribuição.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">5. Revisar classes existentes</div>
+        <div class="tds">Ative ou saneie classes reaproveitadas, vínculos antigos, situações de parte e mapeamentos MNI/CNJ quando aplicável.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">6. Executar vínculos de classes</div>
+        <div class="tds">Associe classes às competências, situações de parte, pesos de distribuição e localidades habilitadas.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">7. Executar competências por juízo</div>
+        <div class="tds">Vincule os juízos/gabinetes às competências e confirme os pesos das classes para distribuição.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">8. Executar assuntos da competência</div>
+        <div class="tds">Copie ou habilite os assuntos esperados para a competência de destino, especialmente na Turma Recursal.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">9. Executar localizadores</div>
+        <div class="tds">Inclua os localizadores específicos de entrada e de fluxo, além dos localizadores copiados de órgãos de referência.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">10. Executar pessoas JUI</div>
+        <div class="tds">Crie as pessoas sistêmicas dos juízos e gabinetes depois de confirmar que todos os órgãos existem.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">11. Executar perfil de minuta</div>
+        <div class="tds">Associe o perfil de minuta da Turma Recursal ao tipo de documento necessário para acórdão.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">12. Executar agrupamentos de sessão</div>
+        <div class="tds">Habilite os agrupamentos de pauta, mesa, destaques, apontamentos, íntegra e sessão para o órgão julgador da Turma Recursal.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">13. Aplicar configurações obrigatórias</div>
+        <div class="tds">Confirme o parâmetro de exibição da competência na petição e o bloqueio de distribuição direta para o gabinete da presidência.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">14. Executar testes de fluxo</div>
+        <div class="tds">Realize os testes da Fase 2 para magistrado, lotação, localizadores, distribuição, minuta e sessão de julgamento.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'clb','cbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">15. Registrar evidências e pendências</div>
+        <div class="tds">Guarde evidências da execução, valide eventuais pendências com a área responsável e registre ajustes feitos fora dos scripts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+
+<!-- FASE 2 -->
+<div id="fase2" class="tco">
+<div class="c">
+<section class="sec">
+  <div class="sn">Fase 02</div>
+  <h2 class="st">Testes de Fluxo</h2>
+  <p class="sd">Após a execução dos scripts, realize os testes abaixo para validar a configuração completa dos Juizados Especiais e da Turma Recursal no EPROC. Marque cada item conforme conclusão.</p>
+  <div style="margin-bottom:var(--space-6);">
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-2);">
+      <span>Progresso dos testes</span>
+      <span id="plb">0 / 5 concluídos</span>
+    </div>
+    <div class="pb"><div class="pbi" id="pbi"></div></div>
+  </div>
+
+  <div class="tl2">
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'plb','pbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">1. Adicionar magistrado como atuante e responsável no juízo</div>
+        <div class="tds">Acesse o cadastro do juízo e vincule o magistrado responsável, marcando-o como <strong>atuante</strong> e <strong>responsável</strong>. Verifique se o magistrado aparece na consulta de distribuição do sistema.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'plb','pbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">2. Adicionar lotação no usuário para o local do juízo</div>
+        <div class="tds">No perfil do usuário responsável pela unidade, adicione a <strong>lotação</strong> apontando para o órgão/localidade do Juizado Especial criado. Confirme que o usuário acessa os processos distribuídos ao juízo.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'plb','pbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">3. Inserir localizadores específicos da competência</div>
+        <div class="tds">Cadastre os localizadores específicos para o Juizado Especial. Exemplo: <strong>Petição Inicial JEE</strong> para Juizados Especiais Estaduais. Verifique se o localizador aparece nas opções de movimentação processual para a competência configurada.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'plb','pbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">4. Validar classes, assuntos e distribuição para a Turma Recursal</div>
+        <div class="tds">Protocole ou simule distribuição para a competência da Turma Recursal, conferindo se as classes, assuntos, localidades e pesos aparecem corretamente para os gabinetes habilitados.</div>
+      </div>
+    </div>
+    <div class="ti2">
+      <button class="tc" onclick="chkScoped(this,'plb','pbi')" aria-label="Marcar como concluído">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div>
+        <div class="tit2">5. Validar minuta de acórdão e sessão de julgamento</div>
+        <div class="tds">No perfil da secretaria da Turma Recursal, confirme a disponibilidade do tipo de minuta esperado e verifique se os agrupamentos de pauta, mesa, destaques e sessão aparecem para o órgão julgador.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+
+<!-- CONFIGS ESPECIAIS -->
+<div id="configs" class="tco">
+<div class="c">
+<section class="sec">
+  <div class="sn">Configurações Especiais</div>
+  <h2 class="st">Configurações Obrigatórias</h2>
+  <p class="sd">Além dos scripts principais, estas configurações são obrigatórias para o correto funcionamento dos Juizados e das Turmas Recursais no EPROC.</p>
+
+  <div class="sg">
+
+    <!-- Parâmetro -->
+    <div class="sc op" id="cA">
+      <div class="sh" onclick="tog('cA')">
+        <div class="snum go">A</div>
+        <div class="sinf">
+          <div class="stit">Parâmetro do Sistema</div>
+          <div class="ssub">Exibição do campo competência na petição — obrigatório</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <p class="bd">Para que o campo de competência seja sempre exibido na tela de petição — independentemente do perfil do usuário —, é necessário criar o seguinte parâmetro no sistema EPROC:</p>
+        <div class="fr"><span class="fn">Nome do parâmetro</span><span class="fv go">EPROC_PETICAO_SEMPRE_EXIBE_COMPETENCIA</span></div>
+        <div class="fr"><span class="fn">Valor</span><span class="fv">S</span></div>
+        <div class="al wa" style="margin-top:var(--space-4);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Sem este parâmetro com valor <strong>'S'</strong>, o campo de competência pode não ser exibido na protocolização da petição inicial, inviabilizando a distribuição correta para os Juizados Especiais.</span>
+        </div>
+        <p class="bd">Valide primeiro se o parâmetro já existe. Se existir com outro valor, ajuste para <strong>S</strong>; se não existir, cadastre-o com o mesmo valor.</p>
+      </div>
+    </div>
+
+    <!-- Turmas Recursais -->
+    <div class="sc" id="cB">
+      <div class="sh" onclick="tog('cB')">
+        <div class="snum re">B</div>
+        <div class="sinf">
+          <div class="stit">Turmas Recursais — Gabinete da Presidência</div>
+          <div class="ssub">Bloqueio de recebimento de distribuição — exclusivo Turmas Recursais</div>
+        </div>
+        <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="sb">
+        <p class="bd">Para as <strong>Turmas Recursais</strong>, o <strong>gabinete da presidência</strong> não deve receber distribuição direta de processos. É necessário configurar o campo <code>sin_recebe_distribuicao</code> com valor <strong>'N'</strong> nas seguintes tabelas:</p>
+        <div class="tlb">Tabelas a serem atualizadas</div>
+        <div class="tch">
+          <span class="ch re">mapa_distribuicao</span>
+          <span class="ch re">orgao_gabinete</span>
+        </div>
+        <div class="fr"><span class="fn">Campo</span><span class="fv re">sin_recebe_distribuicao</span></div>
+        <div class="fr"><span class="fn">Valor (gabinete da presidência)</span><span class="fv re">N</span></div>
+        <div class="al er" style="margin-top:var(--space-4);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          <span>Esta configuração é aplicável <strong>exclusivamente às Turmas Recursais</strong>. Garante que o gabinete da presidência não receba processos pela distribuição automática, preservando o fluxo correto da Turma Recursal.</span>
+        </div>
+        <p class="bd">Após a execução dos scripts da Turma Recursal, confira se o gabinete da presidência está cadastrado no colegiado e permanece sem recebimento direto de distribuição automática.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+</div>
+
+</main>
+
+<footer style="border-top:1px solid var(--color-border);padding:var(--space-8) var(--space-6);margin-top:var(--space-8);">
+  <div style="max-width:var(--max-w);margin-inline:auto;display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:space-between;align-items:center;">
+    <span style="font-size:var(--text-xs);color:var(--color-text-faint);">Roteiro de Implantação — Juizados Especiais Cíveis no EPROC</span>
+    <span style="font-size:var(--text-xs);color:var(--color-text-faint);">Uso interno · Sujeito a revisão conforme versão do sistema</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  if(t) t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';
+    r.setAttribute('data-theme',d);
+    t.innerHTML=d==='dark'
+      ?'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      :'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+document.querySelectorAll('.tb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tb').forEach(x=>x.classList.remove('act'));
+    document.querySelectorAll('.tco').forEach(x=>x.classList.remove('act'));
+    b.classList.add('act');
+    document.getElementById(b.dataset.tab).classList.add('act');
+  });
+});
+function tog(id){document.getElementById(id).classList.toggle('op');}
+function chkScoped(btn,labelId,barId){
+  btn.classList.toggle('dn');
+  const pane=btn.closest('.tco');
+  const done=pane.querySelectorAll('.tc.dn').length;
+  const total=pane.querySelectorAll('.tc').length;
+  document.getElementById(labelId).textContent=done+' / '+total+' concluídos';
+  document.getElementById(barId).style.width=(done/total*100)+'%';
+}
+</script>
+</body>
+</html>
